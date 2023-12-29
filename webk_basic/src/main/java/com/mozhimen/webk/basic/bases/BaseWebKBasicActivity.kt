@@ -3,15 +3,15 @@ package com.mozhimen.webk.basic.bases
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseBarActivityVB
-import com.mozhimen.basick.utilk.android.view.applyGone
 import com.mozhimen.basick.utilk.android.view.applyInVisible
 import com.mozhimen.basick.utilk.android.view.applyVisible
 import com.mozhimen.webk.basic.databinding.ActivityWebkBasicBinding
+
 
 /**
  * @ClassName WebKBasicActivity
@@ -28,6 +28,7 @@ open class BaseWebKBasicActivity : BaseBarActivityVB<ActivityWebkBasicBinding>()
 
     ///////////////////////////////////////////////////////////////////////
 
+    private var _webView: WebView? = null
     private val _webViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             vb.webkBasicProgress.applyVisible()//显示进度条
@@ -48,10 +49,12 @@ open class BaseWebKBasicActivity : BaseBarActivityVB<ActivityWebkBasicBinding>()
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView(savedInstanceState: Bundle?) {
+
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
             title = it
         }
-        vb.webkBasicWebView.apply {
+        _webView = vb.webkBasicWebView
+        _webView!!.apply {
             webViewClient = _webViewClient
             webChromeClient = _webChromeClient
             settings.let {
@@ -66,12 +69,34 @@ open class BaseWebKBasicActivity : BaseBarActivityVB<ActivityWebkBasicBinding>()
         }
     }
 
-    override fun onDestroy() {
-        vb.webkBasicWebView.apply {
-            applyGone()
-            removeAllViews()
-            destroy()
+    override fun onResume() {
+        super.onResume()
+        _webView?.apply {
+            onResume()
+            resumeTimers()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        _webView?.apply {
+            onPause()
+            pauseTimers()
+        }
+    }
+
+    override fun onDestroy() {
         super.onDestroy()
+        _webView?.apply {
+            Log.d(TAG, "onDestroy: webView destroy")
+            clearHistory()//清除历史记录
+            stopLoading()//停止加载
+            loadUrl("about:blank") //加载一个空白页
+            webChromeClient = null
+            webViewClient = WebViewClient()
+            removeAllViews()//移除WebView所有的View对象
+            destroy()//销毁此的WebView的内部状态
+        }
+        _webView = null
     }
 }
