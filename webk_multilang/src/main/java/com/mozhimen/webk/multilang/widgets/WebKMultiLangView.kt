@@ -1,4 +1,4 @@
-package com.mozhimen.webk.basic
+package com.mozhimen.webk.multilang.widgets
 
 import android.content.Context
 import android.util.AttributeSet

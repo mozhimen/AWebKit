@@ -1,16 +1,18 @@
-package com.mozhimen.webk.basic.bases
+package com.mozhimen.webk.multilang.bases
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.hjq.language.MultiLanguages
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseBarActivityVB
 import com.mozhimen.basick.utilk.android.view.applyInVisible
 import com.mozhimen.basick.utilk.android.view.applyVisible
-import com.mozhimen.webk.basic.databinding.ActivityWebkBasicBinding
+import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 
 
 /**
@@ -20,7 +22,7 @@ import com.mozhimen.webk.basic.databinding.ActivityWebkBasicBinding
  * @Date 2023/12/24 16:06
  * @Version 1.0
  */
-open class BaseWebKBasicActivity : BaseBarActivityVB<ActivityWebkBasicBinding>() {
+open class BaseWebKMultiLangActivity : BaseBarActivityVB<ActivityWebkBasicBinding>() {
     companion object {
         const val EXTRA_WEBKIT_BASIC_TITLE = "EXTRA_WEBKIT_BASIC_TITLE"
         const val EXTRA_WEBKIT_BASIC_URl = "EXTRA_WEBKIT_BASIC_URl"
@@ -46,6 +48,10 @@ open class BaseWebKBasicActivity : BaseBarActivityVB<ActivityWebkBasicBinding>()
     }
 
     ///////////////////////////////////////////////////////////////////////
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(MultiLanguages.attach(newBase))
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView(savedInstanceState: Bundle?) {

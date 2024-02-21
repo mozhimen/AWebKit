@@ -31,3 +31,4 @@ include(':ABasicKit_MultiLanguages')
 project(':ABasicKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ABasicKit_MultiLanguages")
 include(':ABasicKit_MultiLanguages:basick_multilang')
 include(':ABasicKit_MultiLanguages:multilang')
+include ':webk_multilang'

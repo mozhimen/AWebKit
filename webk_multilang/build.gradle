@@ -1,10 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.mozhimen.webk.basic'
+    namespace 'com.mozhimen.webk.multilang'
     compileSdk 33
 
     defaultConfig {
@@ -28,10 +29,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        dataBinding true
+    }
 }
 
 dependencies {
+    implementation project(':webk_basic')
+    implementation project(':ABasicKit_MultiLanguages:basick_multilang')
     implementation project(':SwiftKit:basick')
+    implementation project(':SwiftKit:uicorek')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
