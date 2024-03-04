@@ -9,7 +9,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.hjq.language.MultiLanguages
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseBarActivityVB
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseBarActivityVDB
 import com.mozhimen.basick.utilk.android.view.applyInVisible
 import com.mozhimen.basick.utilk.android.view.applyVisible
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
@@ -22,7 +22,7 @@ import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
  * @Date 2023/12/24 16:06
  * @Version 1.0
  */
-open class BaseWebKMultiLangActivity : BaseBarActivityVB<ActivityWebkBasicBinding>() {
+open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBinding>() {
     companion object {
         const val EXTRA_WEBKIT_BASIC_TITLE = "EXTRA_WEBKIT_BASIC_TITLE"
         const val EXTRA_WEBKIT_BASIC_URl = "EXTRA_WEBKIT_BASIC_URl"
@@ -33,17 +33,17 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVB<ActivityWebkBasicBindin
     private var _webView: WebView? = null
     private val _webViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-            vb.webkBasicProgress.applyVisible()//显示进度条
+            vdb.webkBasicProgress.applyVisible()//显示进度条
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
-            vb.webkBasicProgress.applyInVisible()
+            vdb.webkBasicProgress.applyInVisible()
         }
     }
 
     private val _webChromeClient = object : WebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
-            vb.webkBasicProgress.progress = newProgress
+            vdb.webkBasicProgress.progress = newProgress
         }
     }
 
@@ -59,7 +59,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVB<ActivityWebkBasicBindin
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
             title = it
         }
-        _webView = vb.webkBasicWebView
+        _webView = vdb.webkBasicWebView
         _webView!!.apply {
             webViewClient = _webViewClient
             webChromeClient = _webChromeClient
@@ -71,7 +71,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVB<ActivityWebkBasicBindin
             }
         }
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_URl)?.let {
-            vb.webkBasicWebView.loadUrl(it)
+            vdb.webkBasicWebView.loadUrl(it)
         }
     }
 
