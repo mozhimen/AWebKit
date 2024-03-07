@@ -23,7 +23,7 @@ include ':app'
 include ':webk_basic'
 //SwiftKit
 include ':SwiftKit'
-project(':SwiftKit').projectDir = new File("C:\\Users\\${System.getenv().get("USERNAME")}\\Documents\\GitHub\\SwiftKit")
+project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
 include ':SwiftKit:xmlk'
 //ABasicKit_MultiLanguages
@@ -32,3 +32,4 @@ project(':ABasicKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHu
 include(':ABasicKit_MultiLanguages:basick_multilang')
 include(':ABasicKit_MultiLanguages:multilang')
 include ':webk_multilang'
+include ':webk_browser'
