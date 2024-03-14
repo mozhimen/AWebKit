@@ -33,3 +33,4 @@ include(':ABasicKit_MultiLanguages:basick_multilang')
 include(':ABasicKit_MultiLanguages:multilang')
 include ':webk_multilang'
 include ':webk_browser'
+include ':webk_x5'
