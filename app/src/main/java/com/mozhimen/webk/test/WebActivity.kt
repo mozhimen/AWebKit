@@ -1,6 +1,6 @@
 package com.mozhimen.webk.test
 
-import com.mozhimen.webk.basic.bases.BaseMultiLangWebKBasicActivity
+import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangActivity
 
 /**
  * @ClassName WebActivity
@@ -9,4 +9,4 @@ import com.mozhimen.webk.basic.bases.BaseMultiLangWebKBasicActivity
  * @Date 2023/12/24 18:29
  * @Version 1.0
  */
-class WebActivity : BaseMultiLangWebKBasicActivity()
+class WebActivity : BaseWebKMultiLangActivity()

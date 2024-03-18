@@ -21,6 +21,9 @@ dependencyResolutionManagement {
 rootProject.name = "AWebKit"
 include ':app'
 include ':webk_basic'
+include ':webk_multilang'
+include ':webk_browser'
+include ':webk_x5'
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
@@ -31,6 +34,4 @@ include(':ABasicKit_MultiLanguages')
 project(':ABasicKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ABasicKit_MultiLanguages")
 include(':ABasicKit_MultiLanguages:basick_multilang')
 include(':ABasicKit_MultiLanguages:multilang')
-include ':webk_multilang'
-include ':webk_browser'
-include ':webk_x5'
+
