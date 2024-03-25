@@ -35,3 +35,5 @@ project(':ABasicKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHu
 include(':ABasicKit_MultiLanguages:basick_multilang')
 include(':ABasicKit_MultiLanguages:multilang')
 
+include ':webk_webkit'
+include ':webk_webkit_test'

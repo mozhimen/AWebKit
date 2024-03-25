@@ -6,6 +6,7 @@ plugins {
 android {
     namespace 'com.mozhimen.webk.x5'
     compileSdk 34
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdk 19
@@ -30,6 +31,7 @@ android {
 }
 
 dependencies {
+    api project(project.path.replace(project.name, '') + ':webk_basic')
     implementation project(":SwiftKit:basick")
     implementation fileTree(includes: ['*.aar','*.jar'],dir: 'libs')
 

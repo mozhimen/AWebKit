@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:progress="30"
-            android:progressDrawable="@drawable/webk_basic_bg_progress" />
+            android:progressDrawable="@drawable/webk_multilang_bg_progress" />
 
     </FrameLayout>
 </layout>
