@@ -35,7 +35,6 @@ android {
 }
 
 dependencies {
-    api project(project.path.replace(project.name, '') + ':webk_basic')
     implementation project(':ABasicKit_MultiLanguages:basick_multilang')
     implementation project(':SwiftKit:basick')
     implementation project(':SwiftKit:xmlk')

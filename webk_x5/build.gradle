@@ -31,7 +31,6 @@ android {
 }
 
 dependencies {
-    api project(project.path.replace(project.name, '') + ':webk_basic')
     implementation project(":SwiftKit:basick")
     implementation fileTree(includes: ['*.aar','*.jar'],dir: 'libs')
 

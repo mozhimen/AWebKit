@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-    api project(project.path.replace(project.name, '') + ':webk_basic')
     implementation project(':SwiftKit:basick')
     implementation 'androidx.webkit:webkit:1.4.0'
 
