@@ -37,3 +37,4 @@ include(':ABasicKit_MultiLanguages:multilang')
 
 include ':webk_webkit'
 include ':webk_webkit_test'
+include ':webk_browser_test'
