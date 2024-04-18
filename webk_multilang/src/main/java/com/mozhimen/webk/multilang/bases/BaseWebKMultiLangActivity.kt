@@ -68,6 +68,8 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
 //            it.builtInZoomControls = true//支持缩放
                 it.useWideViewPort = true//将图片调整到适合webView的大小//设置自适应屏幕，两者合用
                 it.loadWithOverviewMode = true// 缩放至屏幕的大小
+
+                it.domStorageEnabled = true // 开启DOM
             }
         }
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_URl)?.let {
