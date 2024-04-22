@@ -77,6 +77,14 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (_webView?.canGoBack() == true) {
+            _webView?.goBack()
+        } else
+            super.onBackPressed()
+    }
+
     override fun onResume() {
         super.onResume()
         _webView?.apply {
