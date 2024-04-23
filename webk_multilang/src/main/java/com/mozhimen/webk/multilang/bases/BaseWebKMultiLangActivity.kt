@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -104,7 +105,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
     override fun onDestroy() {
         super.onDestroy()
         _webView?.apply {
-            Log.d(TAG, "onDestroy: webView destroy")
+            UtilKLogWrapper.d(TAG, "onDestroy: webView destroy")
             clearHistory()//清除历史记录
             stopLoading()//停止加载
             loadUrl("about:blank") //加载一个空白页
