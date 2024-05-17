@@ -3,7 +3,7 @@ package com.mozhimen.webk.browser.utils
 import android.content.Context
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
-import com.mozhimen.basick.elemk.commons.IExtension_Listener
+import com.mozhimen.basick.elemk.commons.IExt_Listener
 
 /**
  * @ClassName CustomTabsIntentUtil
@@ -19,7 +19,7 @@ object CustomTabsIntentUtil {
     }
 
     @JvmStatic
-    fun launchUrl(context: Context, uri: Uri, intentBuilderBlock: IExtension_Listener<CustomTabsIntent.Builder>) {
+    fun launchUrl(context: Context, uri: Uri, intentBuilderBlock: IExt_Listener<CustomTabsIntent.Builder>) {
         CustomTabsIntent.Builder().apply { this.intentBuilderBlock() }.build().launchUrl(context, uri)
     }
 
