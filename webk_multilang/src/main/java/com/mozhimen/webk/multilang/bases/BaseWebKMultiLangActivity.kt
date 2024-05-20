@@ -58,10 +58,12 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
     override fun initView(savedInstanceState: Bundle?) {
 
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
-            title = it
+            setToolbarTitle(it)
         }
         _webView = vdb.webkBasicWebView
         _webView!!.apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
             webViewClient = _webViewClient
             webChromeClient = _webChromeClient
             settings.let {
