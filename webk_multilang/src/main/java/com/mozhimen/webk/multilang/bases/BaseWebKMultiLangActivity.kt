@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.webkit.WebChromeClient
 import android.webkit.WebView
