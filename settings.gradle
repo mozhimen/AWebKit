@@ -29,11 +29,11 @@ include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
 include ':SwiftKit:xmlk'
-//ABasicKit_MultiLanguages
-include(':ABasicKit_MultiLanguages')
-project(':ABasicKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ABasicKit_MultiLanguages")
-include(':ABasicKit_MultiLanguages:basick_multilang')
-include(':ABasicKit_MultiLanguages:multilang')
+//ALocalKit_MultiLanguages
+include(':ALocalKit_MultiLanguages')
+project(':ALocalKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ALocalKit_MultiLanguages")
+include(':ALocalKit_MultiLanguages:localk_multilang')
+include(':ALocalKit_MultiLanguages:multilang')
 
 include ':webk_webkit'
 include ':webk_webkit_test'
