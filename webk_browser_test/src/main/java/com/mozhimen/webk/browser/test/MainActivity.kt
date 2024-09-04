@@ -3,7 +3,7 @@ package com.mozhimen.webk.browser.test
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mozhimen.webk.browser.utils.CustomTabsIntentUtil
-import com.mozhimen.basick.utilk.kotlin.strUrl2uri
+import com.mozhimen.kotlin.utilk.kotlin.strUrl2uri
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

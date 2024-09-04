@@ -3,7 +3,7 @@ package com.mozhimen.webk.browser.utils
 import android.content.Context
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
-import com.mozhimen.basick.elemk.commons.IExt_Listener
+import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 
 /**
  * @ClassName CustomTabsIntentUtil

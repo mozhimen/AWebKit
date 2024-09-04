@@ -3,8 +3,8 @@ package com.mozhimen.webk.basic
 import android.app.Application
 import android.content.Context
 import android.webkit.WebView
-import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
-import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.hjq.language.MultiLanguages
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseBarActivityVDB
-import com.mozhimen.basick.utilk.android.view.applyInVisible
-import com.mozhimen.basick.utilk.android.view.applyVisible
+import com.mozhimen.kotlin.utilk.android.view.applyInVisible
+import com.mozhimen.kotlin.utilk.android.view.applyVisible
+import com.mozhimen.mvvmk.bases.activity.databinding.BaseBarActivityVDB
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 
 

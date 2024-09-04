@@ -1,9 +1,9 @@
 package com.mozhimen.webk.multilang.utils
 
 import android.content.Context
-import com.mozhimen.basick.utilk.android.content.startContext
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.android.content.startContext
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangActivity
 
 /**

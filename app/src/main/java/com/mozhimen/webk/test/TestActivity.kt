@@ -6,10 +6,10 @@ import android.os.Message
 import android.util.Log
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
-import com.mozhimen.basick.elemk.android.webkit.BaseWebChromeClient
-import com.mozhimen.basick.elemk.android.webkit.BaseWebViewClient
-import com.mozhimen.basick.utilk.commons.IUtilK
-import com.mozhimen.basick.utilk.kotlin.getSplitFirstIndexToStart
+import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
+import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 
 
 class TestActivity : AppCompatActivity(), IUtilK {v
