@@ -36,7 +36,7 @@ android {
 
 dependencies {
     implementation project(':ALocalKit_MultiLanguages:localk_multilang')
-    implementation project(':SwiftKit:mvvmk')
+    implementation project(':SwiftKit:bindk')
     implementation project(':SwiftKit:xmlk')
 
     testImplementation 'junit:junit:4.13.2'

@@ -11,7 +11,7 @@ import android.webkit.WebViewClient
 import com.hjq.language.MultiLanguages
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseBarActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseBarActivityVDB
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 
 
