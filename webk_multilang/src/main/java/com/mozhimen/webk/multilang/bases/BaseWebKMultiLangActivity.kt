@@ -13,6 +13,9 @@ import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseBarActivityVDB
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 
 /**
  * @ClassName WebKBasicActivity
@@ -52,11 +55,12 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
         super.attachBaseContext(MultiLanguages.attach(newBase))
     }
 
+    @OptIn(OApiCall_BindViewLifecycle::class, OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView(savedInstanceState: Bundle?) {
 
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
-            setToolbarTitle(it)
+            toolBarProxy.setToolbarText(it)
         }
         _webView = vdb.webkBasicWebView
         _webView!!.apply {
