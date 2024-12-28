@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.hjq.language.MultiLanguages
@@ -13,9 +12,12 @@ import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseBarActivityVDB
+import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
+import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 
 /**
  * @ClassName WebKBasicActivity
@@ -33,18 +35,26 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
     ///////////////////////////////////////////////////////////////////////
 
     private var _webView: WebView? = null
-    private val _webViewClient = object : WebViewClient() {
+
+    ///////////////////////////////////////////////////////////////////////
+
+    protected val basicUrl by UtilKLazyJVM.lazy_ofNone { intent.getStringExtra(EXTRA_WEBKIT_BASIC_URl) }
+
+    protected open val webViewClient = object : BaseWebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+            super.onPageStarted(view, url, favicon)
             vdb.webkBasicProgress.applyVisible()//显示进度条
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
             vdb.webkBasicProgress.applyInVisible()
         }
     }
 
-    private val _webChromeClient = object : WebChromeClient() {
+    protected open val webChromeClient = object : BaseWebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
+            super.onProgressChanged(view, newProgress)
             vdb.webkBasicProgress.progress = newProgress
         }
     }
@@ -66,8 +76,8 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
         _webView!!.apply {
             isFocusable = true
             isFocusableInTouchMode = true
-            webViewClient = _webViewClient
-            webChromeClient = _webChromeClient
+            webViewClient = this@BaseWebKMultiLangActivity.webViewClient
+            webChromeClient = this@BaseWebKMultiLangActivity.webChromeClient
             settings.let {
                 it.javaScriptEnabled = true//设置支持JS
 //            it.builtInZoomControls = true//支持缩放
@@ -77,7 +87,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
                 it.domStorageEnabled = true // 开启DOM
             }
         }
-        intent.getStringExtra(EXTRA_WEBKIT_BASIC_URl)?.let {
+        basicUrl?.let {
             vdb.webkBasicWebView.loadUrl(it)
         }
     }
