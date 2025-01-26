@@ -10,6 +10,7 @@ android {
 
     defaultConfig {
         minSdk 19
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -18,7 +19,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -31,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation project(":SwiftKit:basick")
+    implementation project(":ASwiftKit:basick")
     implementation fileTree(includes: ['*.aar','*.jar'],dir: 'libs')
 
     testImplementation 'junit:junit:4.13.2'

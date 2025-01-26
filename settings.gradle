@@ -20,21 +20,52 @@ dependencyResolutionManagement {
 
 rootProject.name = "AWebKit"
 include ':app'
-include ':webk_basic'
-include ':webk_multilang'
-include ':webk_browser'
-include ':webk_x5'
-//SwiftKit
-include ':SwiftKit'
-project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
-include ':SwiftKit:basick'
-include ':SwiftKit:xmlk'
+include ':basic'
+include ':multilang'
+include ':browser'
+include ':browser:test'
+include ':x5'
+include ':webkit'
+include ':webkit:test'
+//ALibKit_Google
+include ':ALibKit_Google'
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:material'
+//ALibKit_Jetbrains
+include ':ALibKit_Jetbrains'
+project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
+include ':ALibKit_Jetbrains:kotlin_stdlib'
+include ':ALibKit_Jetbrains:kotlinx_coroutines'
+//ALibKit_Jetpack
+include ':ALibKit_Jetpack'
+project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
+include ':ALibKit_Jetpack:browser'
+include ':ALibKit_Jetpack:webkit'
+include ':ALibKit_Jetpack:databinding'
+include ':ALibKit_Jetpack:annotation'
+include ':ALibKit_Jetpack:core'
+//KUtilKit
+include(':KUtilKit')
+project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
+include(':KUtilKit:android')
+include(':KUtilKit:kotlin')
+//ASwiftKit
+include ':ASwiftKit'
+project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
+include ':ASwiftKit:basick'
+include ':ASwiftKit:xmlk'
+include ':ASwiftKit:bindk'
 //ALocalKit_MultiLanguages
 include(':ALocalKit_MultiLanguages')
 project(':ALocalKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ALocalKit_MultiLanguages")
 include(':ALocalKit_MultiLanguages:localk_multilang')
 include(':ALocalKit_MultiLanguages:multilang')
+//AStackKit
+include(':AStackKit')
+project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
+include(':AStackKit:stackk')
+include(':AStackKit:callback')
+include(':AStackKit:basic')
 
-include ':webk_webkit'
-include ':webk_webkit_test'
-include ':webk_browser_test'
+
+

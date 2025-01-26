@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.webkit.DownloadListener
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
+import androidx.annotation.CallSuper
 import com.hjq.language.MultiLanguages
+import com.mozhimen.basick.bases.BaseBarActivity
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
@@ -26,7 +30,7 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
  * @Date 2023/12/24 16:06
  * @Version 1.0
  */
-open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBinding>() {
+open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
     companion object {
         const val EXTRA_WEBKIT_BASIC_TITLE = "EXTRA_WEBKIT_BASIC_TITLE"
         const val EXTRA_WEBKIT_BASIC_URl = "EXTRA_WEBKIT_BASIC_URl"
@@ -43,26 +47,59 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
     protected open val webViewClient = object : BaseWebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            vdb.webkBasicProgress.applyVisible()//显示进度条
+            getProgressBar()?.applyVisible()//显示进度条
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            vdb.webkBasicProgress.applyInVisible()
+            getProgressBar()?.applyInVisible()
         }
     }
 
     protected open val webChromeClient = object : BaseWebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
-            vdb.webkBasicProgress.progress = newProgress
+            getProgressBar()?.progress = newProgress
         }
     }
+
+    protected open fun getRootLayoutId(): Int =
+        com.mozhimen.webk.multilang.R.layout.activity_webk_basic
+
+    protected open fun getProgressBar(): ProgressBar? =
+        findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_progress)
+
+    protected open fun getWebView(): WebView =
+        findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_web_view)
 
     ///////////////////////////////////////////////////////////////////////
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(MultiLanguages.attach(newBase))
+    }
+
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        try {
+            initFlag()
+            initLayout()
+            initData(savedInstanceState)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            UtilKLogWrapper.e(TAG, "onCreate: e ${e.message}")
+        }
+    }
+
+    override fun initLayout() {
+        setContentView(getRootLayoutId())
+        super.initLayout()
+    }
+
+    @CallSuper
+    override fun initData(savedInstanceState: Bundle?) {
+        initView(savedInstanceState)
+        initObserver()
     }
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
@@ -72,7 +109,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
         intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
             toolBarProxy.setToolbarText(it)
         }
-        _webView = vdb.webkBasicWebView
+        _webView = getWebView()
         _webView!!.apply {
             isFocusable = true
             isFocusableInTouchMode = true
@@ -86,9 +123,10 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
 
                 it.domStorageEnabled = true // 开启DOM
             }
+            setDownloadListener(this@BaseWebKMultiLangActivity)
         }
         basicUrl?.let {
-            vdb.webkBasicWebView.loadUrl(it)
+            getWebView().loadUrl(it.also { UtilKLogWrapper.d(TAG, "initView: basicUrl $basicUrl") })
         }
     }
 
@@ -129,5 +167,11 @@ open class BaseWebKMultiLangActivity : BaseBarActivityVDB<ActivityWebkBasicBindi
             destroy()//销毁此的WebView的内部状态
         }
         _webView = null
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+
+    override fun onDownloadStart(url: String?, userAgent: String?, contentDisposition: String?, mimetype: String?, contentLength: Long) {
+        UtilKLogWrapper.d(TAG, "onDownloadStart: url: $url userAgent: $userAgent contentDisposition: $contentDisposition contentLength: $contentLength")
     }
 }

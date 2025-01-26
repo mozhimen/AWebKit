@@ -12,7 +12,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 
 
-class TestActivity : AppCompatActivity(), IUtilK {v
+class TestActivity : AppCompatActivity(), IUtilK {
     private var _webView: WebView? = null
     private val _pages = HashMap<String, Boolean>()
 
