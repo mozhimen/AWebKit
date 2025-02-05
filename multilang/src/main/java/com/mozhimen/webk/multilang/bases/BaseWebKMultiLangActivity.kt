@@ -15,7 +15,7 @@ import com.mozhimen.basick.bases.BaseBarActivity
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseBarActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle

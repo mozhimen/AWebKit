@@ -54,7 +54,7 @@ include ':ASwiftKit'
 project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
 include ':ASwiftKit:basick'
 include ':ASwiftKit:xmlk'
-include ':ASwiftKit:bindk'
+include ':ASwiftKit:uik:databinding'
 //ALocalKit_MultiLanguages
 include(':ALocalKit_MultiLanguages')
 project(':ALocalKit_MultiLanguages').projectDir = new File("D:\\WorkSpace\\GitHub\\ALocalKit_MultiLanguages")

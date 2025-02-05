@@ -1,7 +1,7 @@
 package com.mozhimen.webk.test
 
 import android.os.Bundle
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.webk.multilang.utils.WebKUtil
 import com.mozhimen.webk.test.databinding.ActivityMainBinding
 
