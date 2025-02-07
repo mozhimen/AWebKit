@@ -29,7 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding true
     }
 }
@@ -38,6 +38,11 @@ dependencies {
     implementation project(':ALocalKit_MultiLanguages:localk_multilang')
     implementation project(':ASwiftKit:uik:databinding')
     implementation project(':ASwiftKit:xmlk')
+    if (rootProject.name == "AWebKit") {
+        implementation project(':basic')
+    } else {
+        implementation project(':AWebKit:basic')
+    }
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
