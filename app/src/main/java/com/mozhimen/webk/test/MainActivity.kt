@@ -8,7 +8,7 @@ import com.mozhimen.webk.test.databinding.ActivityMainBinding
 class MainActivity : BaseActivityVDB<ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         vdb.mainBtn.setOnClickListener {
-            WebKUtil.startWebMultiLangActivity<WebActivity>(this, "这是标题", "https://mxdrop.to/f/wl90k3d7tmqo7j"/*"https://www.baidu.com"*/)
+            WebKUtil.startWebMultiLangActivity<WebActivity>(this, "这是标题","https://modsfire.com/Ga750cl021NYYlu"/* "https://mxdrop.to/f/wl90k3d7tmqo7j"*//*"https://www.baidu.com"*/)
         }
     }
 }
