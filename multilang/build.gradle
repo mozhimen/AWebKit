@@ -39,9 +39,9 @@ dependencies {
     implementation project(':ASwiftKit:uik:databinding')
     implementation project(':ASwiftKit:xmlk')
     if (rootProject.name == "AWebKit") {
-        implementation project(':basic')
+        api project(':basic')
     } else {
-        implementation project(':AWebKit:basic')
+        api project(':AWebKit:basic')
     }
 
     testImplementation 'junit:junit:4.13.2'

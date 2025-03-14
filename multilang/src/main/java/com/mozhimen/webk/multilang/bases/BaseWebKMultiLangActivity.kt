@@ -18,6 +18,7 @@ import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
@@ -38,7 +39,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
 
     ///////////////////////////////////////////////////////////////////////
 
-    private var _webView: WebView? = null
+    protected var _webView: WebView? = null
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -71,6 +72,8 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
 
     protected open fun getWebView(): WebView =
         findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_web_view)
+
+    protected open fun getWebViewGenerator(): IExt_Listener<WebView>? = null
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -124,6 +127,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
                 it.domStorageEnabled = true // 开启DOM
             }
             setDownloadListener(this@BaseWebKMultiLangActivity)
+            getWebViewGenerator()?.invoke(this)
         }
         basicUrl?.let {
             getWebView().loadUrl(it.also { UtilKLogWrapper.d(TAG, "initView: basicUrl $basicUrl") })

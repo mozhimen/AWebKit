@@ -7,5 +7,5 @@ package com.mozhimen.webk.basic.utils
  * @Date 2025/2/6
  * @Version 1.0
  */
-object WebViewUtil {
+object UtilWebView {
 }

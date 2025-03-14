@@ -2,7 +2,6 @@ package com.mozhimen.webk.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Message
 import android.util.Log
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 
 
-class TestActivity : AppCompatActivity(), IUtilK {
+class TestJSActivity : AppCompatActivity(), IUtilK {
     private var _webView: WebView? = null
     private val _pages = HashMap<String, Boolean>()
 
