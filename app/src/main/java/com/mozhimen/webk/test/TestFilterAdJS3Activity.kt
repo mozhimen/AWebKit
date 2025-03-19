@@ -57,11 +57,121 @@ class TestFilterAdJS3Activity : BaseWebKMultiLangActivity() {
                         // 从 body 开始遍历
                         walkNode(document.body);
                     }
+    
+                    function setBackgroundColor() {
+                        // 定义目标颜色
+                        const backgroundColor = '#0177fd';
+                
+                        // 获取所有 class="off-menu-close" 的 div 元素
+                        const elements = document.querySelectorAll('div.off-menu-close');
+                
+                        // 遍历所有匹配的元素
+                        elements.forEach(element => {
+                            // 设置背景颜色
+                            element.style.backgroundColor = backgroundColor;
+                        });
+                    }
+    
+                    function removeFooterBottom() {
+                        const footerBottom = document.getElementById('footer-bottom');
+                        if (footerBottom) {
+                            footerBottom.remove();
+                            console.log('footer-bottom 已移除');
+                        } else {
+                            console.log('未找到 footer-bottom 元素');
+                        }
+                    }
+    
+                    function removeSocialShare() {
+                        // 获取所有 class="social-share" 的 div 元素
+                        const socialShareDivs = document.querySelectorAll('div.social-share');
+                
+                        // 检查是否找到匹配的元素
+                        if (socialShareDivs.length > 0) {
+                            // 遍历所有匹配的元素并移除
+                            socialShareDivs.forEach(div => {
+                                div.remove();
+                            });
+                            console.log('所有 social-share 的 div 已移除');
+                        } else {
+                            console.log('未找到 social-share 的 div 元素');
+                        }
+                    }
+                    
+                    function removeDesc() {
+                        // 获取所有 class="desc" 的 div 元素
+                        const descDivs = document.querySelectorAll('div.desc');
+                
+                        // 检查是否找到匹配的元素
+                        if (descDivs.length > 0) {
+                            // 遍历所有匹配的元素并移除
+                            descDivs.forEach(div => {
+                                div.remove();
+                            });
+                            console.log('所有 desc 的 div 已移除');
+                        } else {
+                            console.log('未找到 desc 的 div 元素');
+                        }
+                    }
+                    
+                    function removeComments() {
+                        const comments = document.getElementById('disqus_thread');
+                        if (comments) {
+                            comments.remove();
+                            console.log('所有 comments 已移除');
+                        } else {
+                            console.log('未找到 comments 元素');
+                        }
+                    }
+                    
+                    function removeSecBg_sidebar() {
+                        // 获取所有 class="secBg sidebar" 的 aside 元素
+                        const sidebarAside = document.querySelectorAll('aside.secBg.sidebar');
+                
+                        // 检查是否找到匹配的元素
+                        if (sidebarAside.length > 0) {
+                            // 遍历所有匹配的元素并移除
+                            sidebarAside.forEach(aside => {
+                                aside.remove();
+                            });
+                            console.log('所有 secBg sidebar 的 aside 已移除');
+                        } else {
+                            console.log('未找到 secBg sidebar 的 aside 元素');
+                        }
+                    }
+                    
+                    function removeNavigationNav() {
+                        // 获取所有 role="navigation" 的 nav 元素
+                        const navigationNavs = document.querySelectorAll('nav[role="navigation"]');
 
+                        // 检查是否找到匹配的元素
+                        if (navigationNavs.length > 0) {
+                            // 遍历所有匹配的元素并移除
+                            navigationNavs.forEach(nav => {
+                                nav.remove();
+                            });
+                            console.log('所有 role="navigation" 的 nav 已移除');
+                        } else {
+                            console.log('未找到 role="navigation" 的 nav 元素');
+                        }
+                    }
+                    
                     // 执行替换函数
                     replaceRetroWithLeLeJoy();
-                    //移除底部
-                    
+                    // 移除nav
+                    removeNavigationNav();
+                    // 设置背景色
+                    setBackgroundColor();
+                    // 移除底部
+                    removeFooterBottom();
+                    // 移除social share
+                    removeSocialShare();
+                    // 移除desc
+                    removeDesc();
+                    // 移除Comments
+                    removeComments();
+                    // 移除secBg sidebar
+                    removeSecBg_sidebar();
                 """.trimIndent(), null
                 )
             }
@@ -69,7 +179,13 @@ class TestFilterAdJS3Activity : BaseWebKMultiLangActivity() {
 
         override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
             val url = request?.url.toString()
-            return if (url.contains("cdn.bncloudfl.com/bn/730/e27/758/730e277581be4ea1a14c2cddfbccf64d3c58af71.gif")) {
+            return if (url.containsAny(
+                    listOf(
+                        "cdn.bncloudfl.com/bn/730/e27/758/730e277581be4ea1a14c2cddfbccf64d3c58af71.gif",
+                        "https://cdn.bncloudfl.com/bn/353/b6b/2a3/353b6b2a3cc4c3c3faf282bd47febe016406018d.png"
+                    )
+                )
+            ) {
                 try {
                     WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open(this@TestFilterAdJS3Activity, "trans.png"))
                 } catch (e: Exception) {
@@ -78,7 +194,7 @@ class TestFilterAdJS3Activity : BaseWebKMultiLangActivity() {
                 }
             } else if (url.contains("https://www.retrogames.cc/images/logo.png?v=20180731")) {
                 try {
-                    WebResourceResponse("image/jpeg", "UTF-8", UtilKAssetManager.open(this@TestFilterAdJS3Activity, "logo.jpg"))
+                    WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open(this@TestFilterAdJS3Activity, "trans_251_38.png"))
                 } catch (e: Exception) {
                     e.printStackTrace()
                     WebResourceResponse(null, null, null)

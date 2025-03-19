@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.webkit.DownloadListener
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.webkit.WebView
@@ -18,10 +21,14 @@ import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IActivity
+import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IFragment
+import com.mozhimen.kotlin.elemk.androidx.fragment.bases.BaseFragment
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.androidx.fragment.UtilKFragment
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 import com.mozhimen.webk.multilang.widgets.WebKMultiLangView
 
@@ -32,7 +39,7 @@ import com.mozhimen.webk.multilang.widgets.WebKMultiLangView
  * @Date 2023/12/24 16:06
  * @Version 1.0
  */
-open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
+open class BaseWebKMultiLangFragment : BaseFragment(), IFragment, IActivity, DownloadListener {
     companion object {
         const val EXTRA_WEBKIT_BASIC_TITLE = "EXTRA_WEBKIT_BASIC_TITLE"
         const val EXTRA_WEBKIT_BASIC_URl = "EXTRA_WEBKIT_BASIC_URl"
@@ -44,7 +51,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
 
     ///////////////////////////////////////////////////////////////////////
 
-    protected val basicUrl by UtilKLazyJVM.lazy_ofNone { intent.getStringExtra(EXTRA_WEBKIT_BASIC_URl) }
+    protected val basicUrl by UtilKLazyJVM.lazy_ofNone { arguments?.getString(EXTRA_WEBKIT_BASIC_URl) }
 
     protected open val webViewClient = object : BaseWebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -69,35 +76,43 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
         com.mozhimen.webk.multilang.R.layout.activity_webk_basic
 
     protected open fun getProgressBar(): ProgressBar? =
-        findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_progress)
+        view?.findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_progress)
 
-    protected open fun getWebView(): WebKMultiLangView =
-        findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_web_view)
+    protected open fun getWebView(): WebKMultiLangView? =
+        view?.findViewById(com.mozhimen.webk.multilang.R.id.webk_basic_web_view)
 
     protected open fun getWebViewGenerator(): IExt_Listener<WebView>? = null
 
+    //////////////////////////////////////////////////////////////////////////////
+
+    fun isAlive(): Boolean = UtilKFragment.isAlive(this)
+
     ///////////////////////////////////////////////////////////////////////
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(MultiLanguages.attach(newBase))
+
+    //@warn 如果子类可以继承, 这里子类的VB一定要放置在第一个
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflateView(container)
+        return inflater.inflate(getRootLayoutId(), container, false)
     }
 
     @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         try {
-            initFlag()
             initLayout()
             initData(savedInstanceState)
         } catch (e: Exception) {
             e.printStackTrace()
-            UtilKLogWrapper.e(TAG, "onCreate: e ${e.message}")
+            UtilKLogWrapper.e(TAG, "onViewCreated: e ${e.message}")
         }
     }
 
+    override fun inflateView(viewGroup: ViewGroup?) {
+
+    }
+
     override fun initLayout() {
-        setContentView(getRootLayoutId())
-        super.initLayout()
     }
 
     @CallSuper
@@ -109,16 +124,12 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
     @OptIn(OApiCall_BindViewLifecycle::class, OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView(savedInstanceState: Bundle?) {
-
-        intent.getStringExtra(EXTRA_WEBKIT_BASIC_TITLE)?.let {
-            toolBarProxy.setToolbarText(it)
-        }
         _webView = getWebView()
         _webView!!.apply {
             isFocusable = true
             isFocusableInTouchMode = true
-            webViewClient = this@BaseWebKMultiLangActivity.webViewClient
-            webChromeClient = this@BaseWebKMultiLangActivity.webChromeClient
+            webViewClient = this@BaseWebKMultiLangFragment.webViewClient
+            webChromeClient = this@BaseWebKMultiLangFragment.webChromeClient
             settings.let {
                 it.javaScriptEnabled = true//设置支持JS
 //            it.builtInZoomControls = true//支持缩放
@@ -127,20 +138,12 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
 
                 it.domStorageEnabled = true // 开启DOM
             }
-            setDownloadListener(this@BaseWebKMultiLangActivity)
+            setDownloadListener(this@BaseWebKMultiLangFragment)
             getWebViewGenerator()?.invoke(this)
         }
         basicUrl?.let {
-            getWebView().loadUrl(it.also { UtilKLogWrapper.d(TAG, "initView: basicUrl $basicUrl") })
+            getWebView()?.loadUrl(it.also { UtilKLogWrapper.d(TAG, "initView: basicUrl $basicUrl") })
         }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (_webView?.canGoBack() == true) {
-            _webView?.goBack()
-        } else
-            super.onBackPressed()
     }
 
     override fun onResume() {

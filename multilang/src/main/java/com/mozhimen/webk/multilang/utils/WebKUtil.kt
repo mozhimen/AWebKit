@@ -42,6 +42,16 @@ object WebKUtil : IUtilK {
     }
 
     @JvmStatic
+    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivity(context: Context, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
+        UtilKLogWrapper.d(TAG, "startWebMultiLangActivity title $title strUrl $strUrl")
+        context.startContext<A> {
+            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
+            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
+            otherBlock.invoke(this)
+        }
+    }
+
+    @JvmStatic
     inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivityForResult(activity: Activity, requestCode: Int, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
         UtilKLogWrapper.d(TAG, "startWebMultiLangActivity title $title strUrl $strUrl")
         activity.startActivityForResult<A>(requestCode) {
