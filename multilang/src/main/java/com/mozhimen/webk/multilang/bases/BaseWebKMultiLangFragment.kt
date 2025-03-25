@@ -119,6 +119,7 @@ open class BaseWebKMultiLangFragment : BaseFragment(), IFragment, IActivity, Dow
     override fun initData(savedInstanceState: Bundle?) {
         initView(savedInstanceState)
         initObserver()
+        initEvent()
     }
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
