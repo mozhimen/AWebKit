@@ -13,12 +13,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.annotation.CallSuper
-import com.hjq.language.MultiLanguages
-import com.mozhimen.basick.bases.BaseBarActivity
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
-import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
-import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
 import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
 import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IActivity
