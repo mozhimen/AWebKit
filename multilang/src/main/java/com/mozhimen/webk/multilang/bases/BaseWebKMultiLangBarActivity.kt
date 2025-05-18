@@ -14,10 +14,8 @@ import com.hjq.language.MultiLanguages
 import com.mozhimen.basick.bases.BaseBarActivity
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
-import com.mozhimen.webk.multilang.databinding.ActivityWebkBasicBinding
-import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebChromeClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebViewClient
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
@@ -32,7 +30,7 @@ import com.mozhimen.webk.multilang.widgets.WebKMultiLangView
  * @Date 2023/12/24 16:06
  * @Version 1.0
  */
-open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
+open class BaseWebKMultiLangBarActivity : BaseBarActivity(), DownloadListener {
     companion object {
         const val EXTRA_WEBKIT_BASIC_TITLE = "EXTRA_WEBKIT_BASIC_TITLE"
         const val EXTRA_WEBKIT_BASIC_URl = "EXTRA_WEBKIT_BASIC_URl"
@@ -117,8 +115,8 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
         _webView!!.apply {
             isFocusable = true
             isFocusableInTouchMode = true
-            webViewClient = this@BaseWebKMultiLangActivity.webViewClient
-            webChromeClient = this@BaseWebKMultiLangActivity.webChromeClient
+            webViewClient = this@BaseWebKMultiLangBarActivity.webViewClient
+            webChromeClient = this@BaseWebKMultiLangBarActivity.webChromeClient
             settings.let {
                 it.javaScriptEnabled = true//设置支持JS
 //            it.builtInZoomControls = true//支持缩放
@@ -127,7 +125,7 @@ open class BaseWebKMultiLangActivity : BaseBarActivity(), DownloadListener {
 
                 it.domStorageEnabled = true // 开启DOM
             }
-            setDownloadListener(this@BaseWebKMultiLangActivity)
+            setDownloadListener(this@BaseWebKMultiLangBarActivity)
             getWebViewGenerator()?.invoke(this)
         }
         basicUrl?.let {

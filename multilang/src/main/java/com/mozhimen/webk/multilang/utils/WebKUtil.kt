@@ -8,7 +8,7 @@ import com.mozhimen.kotlin.utilk.android.content.startActivityForResult
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
-import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangActivity
+import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangBarActivity
 
 /**
  * @ClassName WebKUtil
@@ -19,44 +19,44 @@ import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangActivity
  */
 object WebKUtil : IUtilK {
     @JvmStatic
-    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivity(context: Context, strUrl: String) {
+    inline fun <reified A : BaseWebKMultiLangBarActivity> startWebMultiLangActivity(context: Context, strUrl: String) {
         startWebMultiLangActivity<A>(context, "", strUrl)
     }
 
     @JvmStatic
-    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivity(context: Context, strUrl: String, otherBlock: IExt_Listener<Intent>) {
+    inline fun <reified A : BaseWebKMultiLangBarActivity> startWebMultiLangActivity(context: Context, strUrl: String, otherBlock: IExt_Listener<Intent>) {
         context.startContext<A> {
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_TITLE, "")
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_TITLE, "")
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
             otherBlock.invoke(this)
         }
     }
 
     @JvmStatic
-    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivity(context: Context, title: String, strUrl: String) {
+    inline fun <reified A : BaseWebKMultiLangBarActivity> startWebMultiLangActivity(context: Context, title: String, strUrl: String) {
         UtilKLogWrapper.d(TAG, "startWebMultiLangActivity title $title strUrl $strUrl")
         context.startContext<A> {
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
         }
     }
 
     @JvmStatic
-    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivity(context: Context, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
+    inline fun <reified A : BaseWebKMultiLangBarActivity> startWebMultiLangActivity(context: Context, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
         UtilKLogWrapper.d(TAG, "startWebMultiLangActivity title $title strUrl $strUrl")
         context.startContext<A> {
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
             otherBlock.invoke(this)
         }
     }
 
     @JvmStatic
-    inline fun <reified A : BaseWebKMultiLangActivity> startWebMultiLangActivityForResult(activity: Activity, requestCode: Int, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
+    inline fun <reified A : BaseWebKMultiLangBarActivity> startWebMultiLangActivityForResult(activity: Activity, requestCode: Int, title: String, strUrl: String, otherBlock: IExt_Listener<Intent>) {
         UtilKLogWrapper.d(TAG, "startWebMultiLangActivity title $title strUrl $strUrl")
         activity.startActivityForResult<A>(requestCode) {
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
-            putExtra(BaseWebKMultiLangActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_TITLE, title)
+            putExtra(BaseWebKMultiLangBarActivity.EXTRA_WEBKIT_BASIC_URl, strUrl)
             otherBlock.invoke(this)
         }
     }

@@ -15,8 +15,8 @@ import android.widget.ProgressBar
 import androidx.annotation.CallSuper
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebChromeClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebViewClient
 import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IActivity
 import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IFragment
 import com.mozhimen.kotlin.elemk.androidx.fragment.bases.BaseFragment
@@ -80,11 +80,6 @@ open class BaseWebKMultiLangFragment : BaseFragment(), IFragment, IActivity, Dow
     protected open fun getWebViewGenerator(): IExt_Listener<WebView>? = null
 
     //////////////////////////////////////////////////////////////////////////////
-
-    fun isAlive(): Boolean = UtilKFragment.isAlive(this)
-
-    ///////////////////////////////////////////////////////////////////////
-
 
     //@warn 如果子类可以继承, 这里子类的VB一定要放置在第一个
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
