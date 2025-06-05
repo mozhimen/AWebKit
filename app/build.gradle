@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.mozhimen.webk.test'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.mozhimen.webk.test"
