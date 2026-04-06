@@ -21,9 +21,9 @@ import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IActivity
 import com.mozhimen.kotlin.elemk.androidx.appcompat.commons.IFragment
 import com.mozhimen.kotlin.elemk.androidx.fragment.bases.BaseFragment
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.androidx.fragment.UtilKFragment
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 import com.mozhimen.webk.multilang.widgets.WebKMultiLangView
