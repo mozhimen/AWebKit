@@ -36,8 +36,8 @@ android {
 
 dependencies {
     implementation project(':ALocalKit_MultiLanguages:localk_multilang')
-    implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.0.4'
-    implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.0.4'
+    implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.1.6'
+    implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.1.6'
     if (rootProject.name == "AWebKit") {
         api project(':basic')
     } else {

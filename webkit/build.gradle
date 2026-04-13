@@ -31,7 +31,7 @@ android {
 
 dependencies {
     api project(project.path.replace(project.name,'')+':basic')
-    implementation 'com.github.mozhimen.ASwiftKit:basick:2.0.4'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation project(":ALibKit_Jetpack:webkit")
 
     testImplementation 'junit:junit:4.13.2'
