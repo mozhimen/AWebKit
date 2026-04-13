@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation project(":ASwiftKit:basick")
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation fileTree(includes: ['*.aar','*.jar'],dir: 'libs')
 
     testImplementation 'junit:junit:4.13.2'

@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebChromeClient
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebChromeClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebViewClient
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 

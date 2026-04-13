@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
-import com.mozhimen.kotlin.elemk.android.webkit.BaseWebViewClient
+import com.mozhimen.kotlin.elemk.android.webkit.bases.BaseWebViewClient
 import com.mozhimen.kotlin.utilk.android.content.UtilKAssetManager
 import com.mozhimen.kotlin.utilk.android.view.applyInVisible
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.kotlin.containsAny
-import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangActivity
+import com.mozhimen.webk.multilang.bases.BaseWebKMultiLangBarActivity
 import java.util.Locale
 
 
@@ -22,7 +22,7 @@ import java.util.Locale
  * @Date 2023/12/24 18:29
  * @Version 1.0
  */
-class TestFilterAdJS3Activity : BaseWebKMultiLangActivity() {
+class TestFilterAdJS3Activity : BaseWebKMultiLangBarActivity() {
     override val webViewClient: BaseWebViewClient = object : BaseWebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
@@ -187,14 +187,14 @@ class TestFilterAdJS3Activity : BaseWebKMultiLangActivity() {
                 )
             ) {
                 try {
-                    WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open(this@TestFilterAdJS3Activity, "trans.png"))
+                    WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open("trans.png",this@TestFilterAdJS3Activity))
                 } catch (e: Exception) {
                     e.printStackTrace()
                     WebResourceResponse(null, null, null)
                 }
             } else if (url.contains("https://www.retrogames.cc/images/logo.png?v=20180731")) {
                 try {
-                    WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open(this@TestFilterAdJS3Activity, "trans_251_38.png"))
+                    WebResourceResponse("image/png", "UTF-8", UtilKAssetManager.open( "trans_251_38.png",this@TestFilterAdJS3Activity))
                 } catch (e: Exception) {
                     e.printStackTrace()
                     WebResourceResponse(null, null, null)

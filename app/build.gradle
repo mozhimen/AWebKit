@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.1.6'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation project(':multilang')
 
     testImplementation 'junit:junit:4.13.2'
